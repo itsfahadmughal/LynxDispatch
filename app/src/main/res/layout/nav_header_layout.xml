@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:background="#000000">
+
+
+    <LinearLayout
+        android:id="@+id/navHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:paddingTop="30dp"
+        android:paddingBottom="20dp"
+        android:gravity="bottom">
+
+        <ImageView
+            android:id="@+id/navProfile"
+            android:layout_width="100dp"
+            android:layout_gravity="center"
+            android:paddingTop="10dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/dispatch2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:id="@+id/nav_name_user"
+            android:paddingTop="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Name"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:id="@+id/nav_user_car"
+            android:paddingTop="10dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:text="Car"/>
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
