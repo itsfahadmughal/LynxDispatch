@@ -28,7 +28,7 @@ public class DispatchHomeActivity extends AppCompatActivity implements Navigatio
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private boolean doubleBackToExitPressedOnce = false;
-    private TextView username, car;
+    private TextView username, account;
     private ImageView userprofile;
     private SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
@@ -58,14 +58,20 @@ public class DispatchHomeActivity extends AppCompatActivity implements Navigatio
         NavigationView navigationView = findViewById(R.id.nav_view);
         View header_view = navigationView.getHeaderView(0);
         username = header_view.findViewById(R.id.nav_name_user);
-        car = header_view.findViewById(R.id.nav_name_user);
+        account = header_view.findViewById(R.id.nav_user_car);
         userprofile = header_view.findViewById(R.id.navProfile);
         navigationView.setNavigationItemSelectedListener(DispatchHomeActivity.this);
 
         sharedpreferences = getSharedPreferences("login_data", MODE_PRIVATE);
         editor = sharedpreferences.edit();
-        String email = sharedpreferences.getString("email", "");
-        username.setText(email);
+        String fullname = sharedpreferences.getString("FullName", "");
+        username.setText(fullname);
+        int accounttype = sharedpreferences.getInt("RoleId", 0);
+        if (accounttype == 1) {
+            account.setText("Dispatcher");
+        } else if (accounttype == 2) {
+            account.setText("Driver");
+        }
     }
 
     @Override
@@ -105,8 +111,11 @@ public class DispatchHomeActivity extends AppCompatActivity implements Navigatio
                 finish();
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 editor.putInt("flagLogin", 0);
-                editor.putString("email", "");
-                editor.putString("password", "");
+                editor.putString("FullName", "");
+                editor.putInt("UserId", 0);
+                editor.putInt("RoleId", 0);
+                editor.putString("AccessToken", "");
+                editor.putString("TokenType", "");
                 editor.apply();
                 break;
         }
