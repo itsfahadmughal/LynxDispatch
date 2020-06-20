@@ -68,9 +68,9 @@ public class DispatchHomeActivity extends AppCompatActivity implements Navigatio
         username.setText(fullname);
         int accounttype = sharedpreferences.getInt("RoleId", 0);
         if (accounttype == 1) {
-            account.setText("Dispatcher");
-        } else if (accounttype == 2) {
             account.setText("Driver");
+        } else if (accounttype == 2) {
+            account.setText("Dispatcher");
         }
     }
 

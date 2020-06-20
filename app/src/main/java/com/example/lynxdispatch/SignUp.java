@@ -68,10 +68,9 @@ public class SignUp extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(SignUp.this,
                 R.layout.list_item,
                 COUNTRIES);
-        int text =1;
+        int text = 1;
         spinner_menu.setText("Select Account");
         spinner_menu.setAdapter(adapter);
-
 
 
     }
@@ -87,7 +86,7 @@ public class SignUp extends AppCompatActivity {
         if (fieldsOK) {
             if (!email_String.matches(emailValidation)) {
                 email.setError("Invalid email format");
-            } else if (role_String.isEmpty() || role_String.equals("Select Account")  ) {
+            } else if (role_String.isEmpty() || role_String.equals("Select Account")) {
                 Toast.makeText(this, "Select Your Account type", Toast.LENGTH_SHORT).show();
             } else if (pssword_String.isEmpty() || password.length() < 8) {
                 Toast.makeText(this, "Password cannot be less than 8 characters!", Toast.LENGTH_SHORT).show();
@@ -119,4 +118,10 @@ public class SignUp extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+    }
 }

@@ -66,7 +66,9 @@ public class LoginActivity extends AppCompatActivity {
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "Forget Password", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, ForgetPassActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
 
@@ -76,8 +78,8 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, SignUp.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-    }
-});
+            }
+        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,9 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         progressDialog.dismiss();
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                        Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                         try {
-
                             FullName = response.getJSONObject("user").getString("firstname") + ' ' +
                                     response.getJSONObject("user").getString("lastname");
                             Id = response.getJSONObject("user").getInt("id");
@@ -133,15 +133,13 @@ public class LoginActivity extends AppCompatActivity {
                                     getJSONObject(0).getInt("id");
                             TokenType = response.getJSONObject("user").getString("tokenType");
                             AccessToken = response.getJSONObject("user").getString("accessToken");
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
                         Toast.makeText(LoginActivity.this, "Welcome " + FullName, Toast.LENGTH_LONG).show();
-                        if (RoleId == 2) {
-                            Intent intent = new Intent(LoginActivity.this, DispatchHomeActivity.class);
+                        if (RoleId == 1) {
+                            Intent intent = new Intent(LoginActivity.this, DriverHomeActivity.class);
                             startActivity(intent);
                             finish();
                             overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
@@ -153,8 +151,8 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("AccessToken", AccessToken);
                             editor.putString("TokenType", TokenType);
                             editor.apply();
-                        } else if (RoleId == 1) {
-                            Intent intent = new Intent(LoginActivity.this, DriverHomeActivity.class);
+                        } else if (RoleId == 2) {
+                            Intent intent = new Intent(LoginActivity.this, DispatchHomeActivity.class);
                             startActivity(intent);
                             finish();
                             overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
@@ -214,12 +212,12 @@ public class LoginActivity extends AppCompatActivity {
         int loginflag = sharedpreferences.getInt("flagLogin", 0);
 
         if (loginflag == 1) {
-            Intent intent = new Intent(LoginActivity.this, DispatchHomeActivity.class);
+            Intent intent = new Intent(LoginActivity.this, DriverHomeActivity.class);
             startActivity(intent);
             finish();
             overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         } else if (loginflag == 2) {
-            Intent intent = new Intent(LoginActivity.this, DriverHomeActivity.class);
+            Intent intent = new Intent(LoginActivity.this, DispatchHomeActivity.class);
             startActivity(intent);
             finish();
             overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);

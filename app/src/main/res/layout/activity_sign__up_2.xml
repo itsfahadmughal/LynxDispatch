@@ -32,7 +32,7 @@
             android:id="@+id/textInputLayout1_2"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="320dp"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:layout_marginTop="100dp"
             android:hint="Contact No"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,18 +49,18 @@
                 android:padding="10dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout2_2"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="320dp"
             android:layout_height="50dp"
-            android:layout_marginTop="85dp"
-            android:hint="Country"
+            android:layout_marginTop="24dp"
 
-            app:layout_constraintBottom_toBottomOf="@id/textInputLayout1_2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/textInputLayout1_2"
+            android:hint="Country"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayout1_2"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout1_2"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout1_2"
             app:startIconDrawable="@drawable/ic_baselin_country_24">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -71,18 +71,18 @@
                 android:maxLines="1"
                 android:padding="10dp" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout3_2"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="320dp"
             android:layout_height="50dp"
-            android:layout_marginTop="140dp"
-            android:hint="State"
+            android:layout_marginTop="24dp"
 
-            app:layout_constraintBottom_toBottomOf="@id/textInputLayout2_2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/textInputLayout2_2"
+            android:hint="State"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayout2_2"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout2_2"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2_2"
             app:startIconDrawable="@drawable/ic_baselin_country_24">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -99,13 +99,12 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="320dp"
             android:layout_height="50dp"
-            android:layout_marginTop="140dp"
-            android:hint="City"
+            android:layout_marginTop="24dp"
 
-            app:layout_constraintBottom_toBottomOf="@id/textInputLayout3_2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/textInputLayout3_2"
+            android:hint="City"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayout3_2"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout3_2"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout3_2"
             app:startIconDrawable="@drawable/ic_baseline_location_24">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -116,18 +115,18 @@
                 android:maxLines="1"
                 android:padding="10dp" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout5_2"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="320dp"
             android:layout_height="50dp"
-            android:layout_marginTop="140dp"
-            android:hint="Address"
+            android:layout_marginTop="24dp"
 
-            app:layout_constraintBottom_toBottomOf="@id/textInputLayout4_2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/textInputLayout4_2"
+            android:hint="Address"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayout4_2"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout4_2"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4_2"
             app:startIconDrawable="@drawable/ic_baseline_location_24">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -138,18 +137,18 @@
                 android:maxLines="1"
                 android:padding="10dp" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout6_2"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="320dp"
             android:layout_height="50dp"
-            android:layout_marginTop="140dp"
-            android:hint="Zip Code"
+            android:layout_marginTop="24dp"
 
-            app:layout_constraintBottom_toBottomOf="@id/textInputLayout5_2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/textInputLayout5_2"
+            android:hint="Zip Code"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayout5_2"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout5_2"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout5_2"
             app:startIconDrawable="@drawable/ic_outline_email_24">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -165,17 +164,15 @@
             android:id="@+id/signUp_button"
             android:layout_width="320dp"
             android:layout_height="45dp"
-            android:layout_marginTop="140dp"
-            android:text="Sign Up"
-            android:elevation="10dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/loginbutton"
+            android:elevation="10dp"
+            android:text="Sign Up"
             android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="@id/textInputLayout6_2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/textInputLayout6_2"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayout6_2"
 
-            />
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout6_2"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout6_2" />
 
 
 

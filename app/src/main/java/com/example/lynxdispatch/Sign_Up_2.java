@@ -39,9 +39,10 @@ import java.util.Map;
 public class Sign_Up_2 extends AppCompatActivity {
     private ProgressDialog progressDialog1;
     private RequestQueue requestQueue;
-    Button signButton,back_Button;
-    private TextInputEditText address,country,state,city,zip_code,contact_no;
-    private  String first_name,last_name,email,role,password, address_String,country_String,state_String,city_String,zip_code_String,contact_no_String;
+    Button signButton, back_Button;
+    private TextInputEditText address, country, state, city, zip_code, contact_no;
+    private String first_name, last_name, email, role, password, address_String, country_String, state_String, city_String, zip_code_String, contact_no_String;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +66,7 @@ public class Sign_Up_2 extends AppCompatActivity {
             }
         });
     }
+
     private void initialization() {
         progressDialog1 = new ProgressDialog(Sign_Up_2.this);
         progressDialog1.setMessage("Loading...");
@@ -81,41 +83,43 @@ public class Sign_Up_2 extends AppCompatActivity {
         contact_no = findViewById(R.id.contact_No);
 
     }
-    private  void  setBack_Button(){
+
+    private void setBack_Button() {
 
         finish();
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
-    private  void  signUp() throws JSONException {
+
+    private void signUp() throws JSONException {
         address_String = address.getText().toString();
-      contact_no_String = contact_no.getText().toString();
+        contact_no_String = contact_no.getText().toString();
         country_String = country.getText().toString();
-       zip_code_String = zip_code.getText().toString();
-      state_String = state.getText().toString();
+        zip_code_String = zip_code.getText().toString();
+        state_String = state.getText().toString();
         city_String = city.getText().toString();
-        boolean fieldsOK = validate(new EditText[] { contact_no,country,state,city,address,zip_code});
-        if (fieldsOK){
+        boolean fieldsOK = validate(new EditText[]{contact_no, country, state, city, address, zip_code});
+        if (fieldsOK) {
             sendLoginRequest();
-        }
-        else  {
+        } else {
 
         }
     }
-    private void getDataFrom_SignUp(){
+
+    private void getDataFrom_SignUp() {
         Bundle b = getIntent().getExtras();
         first_name = b.getString("first_name");
         last_name = b.getString("last_name");
         email = b.getString("email");
         role = b.getString("role");
         password = b.getString("pssword");
-        
+
 
     }
 
-    private boolean validate(EditText[] fields){
-        for(int i = 0; i < fields.length; i++){
+    private boolean validate(EditText[] fields) {
+        for (int i = 0; i < fields.length; i++) {
             EditText currentField = fields[i];
-            if(currentField.getText().toString().length() <= 0){
+            if (currentField.getText().toString().length() <= 0) {
                 currentField.setError("Do not leave empty");
                 return false;
             }
@@ -127,20 +131,20 @@ public class Sign_Up_2 extends AppCompatActivity {
 
         String url = "https://lynxdispatch-api.herokuapp.com/api/auth/signup";
 
-        JSONArray array=new JSONArray();
-        JSONObject obj=new JSONObject();
+        JSONArray array = new JSONArray();
+        JSONObject obj = new JSONObject();
         try {
-            JSONArray arrays =new JSONArray();
-            obj.put("firstname",first_name.toLowerCase());
+            JSONArray arrays = new JSONArray();
+            obj.put("firstname", first_name.toLowerCase());
             obj.put("lastname", last_name.toLowerCase());
             obj.put("username", email.toLowerCase());
             array.put(role.toString().toLowerCase());
-            obj.put("role",array);
+            obj.put("role", array);
             obj.put("email", email.toLowerCase());
             obj.put("password", password.toLowerCase());
-            obj.put("country",  country_String.toLowerCase() );
+            obj.put("country", country_String.toLowerCase());
             obj.put("state", state_String.toLowerCase());
-            obj.put("city", city_String.toLowerCase() );
+            obj.put("city", city_String.toLowerCase());
             obj.put("zipcode", zip_code_String.toLowerCase());
             obj.put("contactNo", contact_no_String.toLowerCase());
             obj.put("address", address_String.toLowerCase());
@@ -149,7 +153,7 @@ public class Sign_Up_2 extends AppCompatActivity {
         }
         final String requestBody = obj.toString();
 
-       // Toast.makeText(getApplicationContext(), "params-"+obj, Toast.LENGTH_LONG).show();
+        // Toast.makeText(getApplicationContext(), "params-"+obj, Toast.LENGTH_LONG).show();
         progressDialog1.show();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
@@ -162,16 +166,15 @@ public class Sign_Up_2 extends AppCompatActivity {
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         try {
                             String msg = response.getString("message");
-                            if (msg.equals("User Registered Success")){
-                                
+                            if (msg.equals("User Registered Success")) {
+
                                 Toast.makeText(Sign_Up_2.this, msg, Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Sign_Up_2.this, LoginActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 finish();
                                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(Sign_Up_2.this, "Something Wrong", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
@@ -203,6 +206,7 @@ public class Sign_Up_2 extends AppCompatActivity {
         requestQueue.add(jsonObjReq);
 
     }// end of request function...
+
     private void checkInternetConnection(VolleyError error) {
         String message = null;
         String title = "Network Error";
@@ -242,5 +246,13 @@ public class Sign_Up_2 extends AppCompatActivity {
             }
         });
         b.show();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }

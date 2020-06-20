@@ -3,17 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.lynxdispatch">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
-    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/dispatch2"
@@ -23,7 +12,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Sign_Up_2"></activity>
+        <activity android:name=".ForgetPassActivity"></activity>
+        <activity android:name=".Sign_Up_2" />
         <activity android:name=".SignUp" />
         <activity
             android:name=".DriverHomeActivity"
@@ -44,5 +34,16 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+
+    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" />
 
 </manifest>
