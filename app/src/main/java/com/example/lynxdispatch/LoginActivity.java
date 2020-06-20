@@ -73,9 +73,11 @@ public class LoginActivity extends AppCompatActivity {
         newAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "New Account...", Toast.LENGTH_SHORT).show();
-            }
-        });
+                Intent intent = new Intent(LoginActivity.this, SignUp.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+    }
+});
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,8 +122,9 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         progressDialog.dismiss();
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-
+                        Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                         try {
+
                             FullName = response.getJSONObject("user").getString("firstname") + ' ' +
                                     response.getJSONObject("user").getString("lastname");
                             Id = response.getJSONObject("user").getInt("id");
@@ -137,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                         Toast.makeText(LoginActivity.this, "Welcome " + FullName, Toast.LENGTH_LONG).show();
-                        if (RoleId == 1) {
+                        if (RoleId == 2) {
                             Intent intent = new Intent(LoginActivity.this, DispatchHomeActivity.class);
                             startActivity(intent);
                             finish();
@@ -150,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("AccessToken", AccessToken);
                             editor.putString("TokenType", TokenType);
                             editor.apply();
-                        } else if (RoleId == 2) {
+                        } else if (RoleId == 1) {
                             Intent intent = new Intent(LoginActivity.this, DriverHomeActivity.class);
                             startActivity(intent);
                             finish();
