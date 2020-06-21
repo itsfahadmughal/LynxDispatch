@@ -14,9 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        SharedPreferences sharedPreferences = getSharedPreferences("myPref", MODE_PRIVATE);
-//        final boolean b = sharedPreferences.getBoolean("is_Login", false);
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -27,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
-        }, 1500);
+        }, 1000);
     }
 }
 

@@ -8,6 +8,7 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
@@ -135,19 +136,19 @@ public class Sign_Up_2 extends AppCompatActivity {
         JSONObject obj = new JSONObject();
         try {
             JSONArray arrays = new JSONArray();
-            obj.put("firstname", first_name.toLowerCase());
-            obj.put("lastname", last_name.toLowerCase());
+            obj.put("firstname", first_name);
+            obj.put("lastname", last_name);
             obj.put("username", email.toLowerCase());
             array.put(role.toString().toLowerCase());
             obj.put("role", array);
             obj.put("email", email.toLowerCase());
-            obj.put("password", password.toLowerCase());
-            obj.put("country", country_String.toLowerCase());
-            obj.put("state", state_String.toLowerCase());
-            obj.put("city", city_String.toLowerCase());
-            obj.put("zipcode", zip_code_String.toLowerCase());
-            obj.put("contactNo", contact_no_String.toLowerCase());
-            obj.put("address", address_String.toLowerCase());
+            obj.put("password", password);
+            obj.put("country", country_String);
+            obj.put("state", state_String);
+            obj.put("city", city_String);
+            obj.put("zipcode", Integer.parseInt(zip_code_String));
+            obj.put("contactNo", contact_no_String);
+            obj.put("address", address_String);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -167,13 +168,20 @@ public class Sign_Up_2 extends AppCompatActivity {
                         try {
                             String msg = response.getString("message");
                             if (msg.equals("User Registered Success")) {
-
                                 Toast.makeText(Sign_Up_2.this, msg, Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Sign_Up_2.this, LoginActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                                finish();
-                                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(Sign_Up_2.this, LoginActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        startActivity(intent);
+                                        finish();
+                                        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                                    }
+                                }, 1000);
+
+
                             } else {
                                 Toast.makeText(Sign_Up_2.this, "Something Wrong", Toast.LENGTH_SHORT).show();
                             }
@@ -213,8 +221,8 @@ public class Sign_Up_2 extends AppCompatActivity {
         if (error instanceof NetworkError) {
             message = "Cannot connect to Internet...Please check your connection!";
         } else if (TextUtils.isEmpty(error.getMessage())) {
-            title = "Email & Password Error";
-            message = "Please Enter Valid Email & Password!!!";
+            title = "Unknown Error";
+            message = "User Not Registered!!!";
         } else if (error instanceof ServerError) {
             message = "The server could not be found. Please try again after some time!!";
         } else if (error instanceof AuthFailureError) {
