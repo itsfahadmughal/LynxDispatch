@@ -63,12 +63,11 @@ public class LoginActivity extends AppCompatActivity {
 
         initialization();
 
+
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, ForgetPassActivity.class);
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                Toast.makeText(LoginActivity.this, "Forget Passowrd...", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.navigation.NavigationView;
 
 public class DispatchHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,7 +30,7 @@ public class DispatchHomeActivity extends AppCompatActivity implements Navigatio
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private boolean doubleBackToExitPressedOnce = false;
-    private TextView username, account;
+    private TextView username, car_model, car_no;
     private ImageView userprofile;
     private SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
@@ -56,22 +58,23 @@ public class DispatchHomeActivity extends AppCompatActivity implements Navigatio
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
         View header_view = navigationView.getHeaderView(0);
         username = header_view.findViewById(R.id.nav_name_user);
-        account = header_view.findViewById(R.id.nav_user_car);
+        car_model = header_view.findViewById(R.id.nav_user_car);
+        car_no = header_view.findViewById(R.id.nav_user_car_no);
         userprofile = header_view.findViewById(R.id.navProfile);
         navigationView.setNavigationItemSelectedListener(DispatchHomeActivity.this);
 
         sharedpreferences = getSharedPreferences("login_data", MODE_PRIVATE);
         editor = sharedpreferences.edit();
         String fullname = sharedpreferences.getString("FullName", "");
+        RequestOptions transcodeTypeRequestBuilder = new RequestOptions().error(R.mipmap.dispatch2);
+        String imageUrl = "http://192.168.100.115:8010/Attendance/Emp/";
+        Glide.with(DispatchHomeActivity.this).load(imageUrl).apply(transcodeTypeRequestBuilder).into(userprofile);
         username.setText(fullname);
-        int accounttype = sharedpreferences.getInt("RoleId", 0);
-        if (accounttype == 1) {
-            account.setText("Driver");
-        } else if (accounttype == 2) {
-            account.setText("Dispatcher");
-        }
+        car_model.setText("Toyota Prius");
+        car_no.setText("LEH-5230");
     }
 
     @Override
