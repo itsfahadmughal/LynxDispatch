@@ -32,6 +32,7 @@ public class DriverHomeActivity extends AppCompatActivity implements NavigationV
     private ImageView userprofile;
     private SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +68,12 @@ public class DriverHomeActivity extends AppCompatActivity implements NavigationV
         sharedpreferences = getSharedPreferences("login_data", MODE_PRIVATE);
         editor = sharedpreferences.edit();
         RequestOptions transcodeTypeRequestBuilder = new RequestOptions().error(R.mipmap.dispatch2);
-        String imageUrl = "http://192.168.100.115:8010/Attendance/Emp/";
+        String imageUrl = sharedpreferences.getString("UserProfile", "");
+        Toast.makeText(this, imageUrl, Toast.LENGTH_LONG).show();
         Glide.with(DriverHomeActivity.this).load(imageUrl).apply(transcodeTypeRequestBuilder).into(userprofile);
         String fullname = sharedpreferences.getString("FullName", "");
         username.setText(fullname);
-        car_model.setText("Toyota Prius");
+        car_model.setText("Toyota Prado");
         car_no.setText("LEH-5230");
     }
 
@@ -101,13 +103,16 @@ public class DriverHomeActivity extends AppCompatActivity implements NavigationV
                 Toast.makeText(this, "Support", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.dispatch_item8:
-                Toast.makeText(this, "Payment", Toast.LENGTH_SHORT).show();
+                intent = new Intent(DriverHomeActivity.this, PaymentActivity.class);
+                startActivity(intent);
+                drawerLayout.closeDrawer(Gravity.LEFT);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.dispatch_item9:
                 Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.dispatch_item10:
-                Intent intent = new Intent(DriverHomeActivity.this, LoginActivity.class);
+                intent = new Intent(DriverHomeActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);

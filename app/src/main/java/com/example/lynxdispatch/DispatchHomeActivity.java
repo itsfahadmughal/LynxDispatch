@@ -28,6 +28,7 @@ public class DispatchHomeActivity extends AppCompatActivity implements Navigatio
 
 
     private Toolbar toolbar;
+    private Intent intent;
     private DrawerLayout drawerLayout;
     private boolean doubleBackToExitPressedOnce = false;
     private TextView username, car_model, car_no;
@@ -70,7 +71,7 @@ public class DispatchHomeActivity extends AppCompatActivity implements Navigatio
         editor = sharedpreferences.edit();
         String fullname = sharedpreferences.getString("FullName", "");
         RequestOptions transcodeTypeRequestBuilder = new RequestOptions().error(R.mipmap.dispatch2);
-        String imageUrl = "http://192.168.100.115:8010/Attendance/Emp/";
+        String imageUrl = sharedpreferences.getString("UserProfile", "");
         Glide.with(DispatchHomeActivity.this).load(imageUrl).apply(transcodeTypeRequestBuilder).into(userprofile);
         username.setText(fullname);
         car_model.setText("Toyota Prius");
@@ -103,13 +104,16 @@ public class DispatchHomeActivity extends AppCompatActivity implements Navigatio
                 Toast.makeText(this, "Support", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.dispatch_item8:
-                Toast.makeText(this, "Payment", Toast.LENGTH_SHORT).show();
+                intent = new Intent(DispatchHomeActivity.this, PaymentActivity.class);
+                startActivity(intent);
+                drawerLayout.closeDrawer(Gravity.LEFT);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.dispatch_item9:
                 Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.dispatch_item10:
-                Intent intent = new Intent(DispatchHomeActivity.this, LoginActivity.class);
+                intent = new Intent(DispatchHomeActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
