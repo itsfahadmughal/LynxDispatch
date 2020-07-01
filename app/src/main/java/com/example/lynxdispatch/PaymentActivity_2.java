@@ -3,6 +3,7 @@ package com.example.lynxdispatch;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -42,10 +43,18 @@ public class PaymentActivity_2 extends AppCompatActivity {
         String s1 = ConfirmAccountNo.getText().toString().trim();
         String s2 = RoutingNo.getText().toString().trim();
 
-        if (s.equals(s1)) {
-            Toast.makeText(this, "Dummy Saved!!!" + s2 + " " + s1 + " " + s, Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(s2)) {
+            AccountNo.setError("Account #: This field must be filled!");
+        } else if (TextUtils.isEmpty(s)) {
+            ConfirmAccountNo.setError("Confirm Account #: This field must be filled!");
+        } else if (TextUtils.isEmpty(s1)) {
+            RoutingNo.setError("Routing #: This field must be filled!");
         } else {
-            Toast.makeText(this, "Account Number Doesn't Match!", Toast.LENGTH_SHORT).show();
+            if (s.equals(s1)) {
+                Toast.makeText(this, "Dummy Saved!!!" + s2 + " " + s1 + " " + s, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Account Number Doesn't Match!", Toast.LENGTH_SHORT).show();
+            }
         }
 
     }

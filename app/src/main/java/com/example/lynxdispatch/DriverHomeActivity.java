@@ -69,7 +69,6 @@ public class DriverHomeActivity extends AppCompatActivity implements NavigationV
         editor = sharedpreferences.edit();
         RequestOptions transcodeTypeRequestBuilder = new RequestOptions().error(R.mipmap.dispatch2);
         String imageUrl = sharedpreferences.getString("UserProfile", "");
-        Toast.makeText(this, imageUrl, Toast.LENGTH_LONG).show();
         Glide.with(DriverHomeActivity.this).load(imageUrl).apply(transcodeTypeRequestBuilder).into(userprofile);
         String fullname = sharedpreferences.getString("FullName", "");
         username.setText(fullname);
@@ -103,9 +102,9 @@ public class DriverHomeActivity extends AppCompatActivity implements NavigationV
                 Toast.makeText(this, "Support", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.dispatch_item8:
+                drawerLayout.closeDrawer(Gravity.LEFT);
                 intent = new Intent(DriverHomeActivity.this, PaymentActivity.class);
                 startActivity(intent);
-                drawerLayout.closeDrawer(Gravity.LEFT);
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.dispatch_item9:
