@@ -207,7 +207,6 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
-
         sharedpreferences = getSharedPreferences("login_data", MODE_PRIVATE);
         editor = sharedpreferences.edit();
 

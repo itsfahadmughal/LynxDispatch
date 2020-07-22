@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,9 +23,16 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
-public class DispatchHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class DispatchHomeActivity extends FragmentActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
 
 
     private Toolbar toolbar;
@@ -35,6 +43,10 @@ public class DispatchHomeActivity extends AppCompatActivity implements Navigatio
     private ImageView userprofile;
     private SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
+    private GoogleMap mapAPI;
+    private SupportMapFragment mapFragment;
+    private FloatingActionButton button;
+    private GpsTracker gpsTracker;
 
 
     @Override
@@ -44,14 +56,35 @@ public class DispatchHomeActivity extends AppCompatActivity implements Navigatio
 
         initialization();
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gpsTracker = new GpsTracker(DispatchHomeActivity.this);
+                if (gpsTracker.canGetLocation()) {
+                    double latitude = gpsTracker.getLatitude();
+                    double longitude = gpsTracker.getLongitude();
+                    LatLng Skt = new LatLng(latitude, longitude);
+                    mapAPI.addMarker(new MarkerOptions().position(Skt).title("Skt"));
+                    mapAPI.moveCamera(CameraUpdateFactory.newLatLng(Skt));
+                    mapAPI.setMinZoomPreference(6.0f);
+                    mapAPI.setMaxZoomPreference(14.0f);
+                } else {
+                    gpsTracker.showSettingsAlert();
+                }
+            }
+        });
+
     }
 
     private void initialization() {
         toolbar = findViewById(R.id.toolbar_dispatcher);
-        setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapAPIDispatcher);
+        mapFragment.getMapAsync(this);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(DispatchHomeActivity.this, drawerLayout, toolbar, R.string.navigation_open, R.string.navigation_close);
@@ -65,6 +98,7 @@ public class DispatchHomeActivity extends AppCompatActivity implements Navigatio
         car_model = header_view.findViewById(R.id.nav_user_car);
         car_no = header_view.findViewById(R.id.nav_user_car_no);
         userprofile = header_view.findViewById(R.id.navProfile);
+        button = findViewById(R.id.myLocationButtonDispatcher);
         navigationView.setNavigationItemSelectedListener(DispatchHomeActivity.this);
 
         sharedpreferences = getSharedPreferences("login_data", MODE_PRIVATE);
@@ -154,4 +188,9 @@ public class DispatchHomeActivity extends AppCompatActivity implements Navigatio
         }, 2000);
 
     }//end of back pressed
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mapAPI = googleMap;
+    }
 }

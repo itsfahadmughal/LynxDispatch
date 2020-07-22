@@ -18,13 +18,6 @@
             android:layout_height="wrap_content"
             >
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_driver"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/white"
-                />
-
         </com.google.android.material.appbar.AppBarLayout>
 
         <ScrollView
@@ -36,17 +29,41 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:paddingBottom="10dp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="49dp">
 
 
-                <TextView
-                    android:text="Driver"
-                    android:gravity="center"
-                    android:textSize="50dp"
+                <fragment
+                    android:id="@+id/mapAPIDriver"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent">
+
+                </fragment>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar_driver"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@null"
+                    app:layout_constraintTop_toTopOf="@+id/mapAPIDriver"
+                    tools:layout_editor_absoluteX="0dp" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/myLocationButtonDriver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:src="@android:drawable/ic_menu_mylocation"
+                    app:borderWidth="0dp"
+                    app:elevation="6dp"
+                    app:fabSize="normal"
+                    android:backgroundTint="@color/colorAccent"
+                    app:layout_constraintBottom_toBottomOf="@+id/mapAPIDriver"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:pressedTranslationZ="12dp" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

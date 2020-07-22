@@ -2,6 +2,8 @@ package com.example.lynxdispatch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,6 +14,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class PaymentActivity_2 extends AppCompatActivity {
 
+    private SharedPreferences sharedpreferences;
     private Button backButton, saveButton;
     private TextInputEditText AccountNo, ConfirmAccountNo, RoutingNo;
 
@@ -52,6 +55,23 @@ public class PaymentActivity_2 extends AppCompatActivity {
         } else {
             if (s.equals(s1)) {
                 Toast.makeText(this, "Dummy Saved!!!" + s2 + " " + s1 + " " + s, Toast.LENGTH_SHORT).show();
+
+
+                sharedpreferences = getSharedPreferences("login_data", MODE_PRIVATE);
+
+                int loginflag = sharedpreferences.getInt("flagLogin", 0);
+
+                if (loginflag == 1) {
+                    Intent intent = new Intent(PaymentActivity_2.this, DriverHomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                } else if (loginflag == 2) {
+                    Intent intent = new Intent(PaymentActivity_2.this, DispatchHomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                }
             } else {
                 Toast.makeText(this, "Account Number Doesn't Match!", Toast.LENGTH_SHORT).show();
             }
