@@ -71,7 +71,6 @@ public class DriverHomeActivity extends FragmentActivity implements OnMapReadyCa
                     mapAPI.addMarker(new MarkerOptions().position(Skt).title("Skt"));
                     mapAPI.moveCamera(CameraUpdateFactory.newLatLng(Skt));
                     mapAPI.setMinZoomPreference(6.0f);
-                    mapAPI.setMaxZoomPreference(14.0f);
                 } else {
                     gpsTracker.showSettingsAlert();
                 }

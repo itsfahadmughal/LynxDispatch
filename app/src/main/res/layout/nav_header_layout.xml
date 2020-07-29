@@ -63,13 +63,23 @@
 
 
         <TextView
-            android:id="@+id/nav_user_car_no"
+        android:id="@+id/nav_user_car_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:paddingTop="5dp"
+        android:text="Car"
+        android:textColor="@android:color/white"
+        android:textSize="15sp" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="4dp"
             android:paddingTop="5dp"
-            android:text="Car"
+            android:text="Sprint 1.0.3"
             android:textColor="@android:color/white"
             android:textSize="15sp" />
 

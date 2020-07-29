@@ -45,7 +45,7 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
     private SharedPreferences.Editor editor;
     private GoogleMap mapAPI;
     private SupportMapFragment mapFragment;
-    private FloatingActionButton button;
+    private FloatingActionButton currentLocation, assistantButton, filterButton, phoneButton, calculatorButton;
     private GpsTracker gpsTracker;
 
 
@@ -56,7 +56,7 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
 
         initialization();
 
-        button.setOnClickListener(new View.OnClickListener() {
+        currentLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 gpsTracker = new GpsTracker(DispatchHomeActivity.this);
@@ -67,12 +67,46 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
                     mapAPI.addMarker(new MarkerOptions().position(Skt).title("Skt"));
                     mapAPI.moveCamera(CameraUpdateFactory.newLatLng(Skt));
                     mapAPI.setMinZoomPreference(6.0f);
-                    mapAPI.setMaxZoomPreference(14.0f);
                 } else {
                     gpsTracker.showSettingsAlert();
                 }
             }
-        });
+        });  //on map screen right side button...
+
+
+        assistantButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DispatchHomeActivity.this, DashboardDispatcherActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+
+            }
+        }); //on map screen right side button...
+
+        phoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DispatchHomeActivity.this, ActiveDriversActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+            }
+        }); //on map screen right side button...
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(DispatchHomeActivity.this, "Filter Clicked...", Toast.LENGTH_SHORT).show();
+            }
+        }); //on map screen right side button...
+
+        calculatorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DispatchHomeActivity.this, CalculateTripActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+            }
+        });//on map screen right side button...
 
     }
 
@@ -98,7 +132,11 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
         car_model = header_view.findViewById(R.id.nav_user_car);
         car_no = header_view.findViewById(R.id.nav_user_car_no);
         userprofile = header_view.findViewById(R.id.navProfile);
-        button = findViewById(R.id.myLocationButtonDispatcher);
+        currentLocation = findViewById(R.id.myLocationButtonDispatcher);
+        assistantButton = findViewById(R.id.assistantDispatcher);
+        filterButton = findViewById(R.id.filterDispatcher);
+        phoneButton = findViewById(R.id.phoneCallDispatcher);
+        calculatorButton = findViewById(R.id.calculatorDispatcher);
         navigationView.setNavigationItemSelectedListener(DispatchHomeActivity.this);
 
         sharedpreferences = getSharedPreferences("login_data", MODE_PRIVATE);
