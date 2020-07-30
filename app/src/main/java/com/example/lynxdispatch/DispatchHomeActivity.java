@@ -150,7 +150,7 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
                     c4.setChecked(true);
                 }
 
-                
+
 
                 final LinearLayout linearLayout = new LinearLayout(DispatchHomeActivity.this);
                 final LinearLayout l1 = new LinearLayout(DispatchHomeActivity.this);
