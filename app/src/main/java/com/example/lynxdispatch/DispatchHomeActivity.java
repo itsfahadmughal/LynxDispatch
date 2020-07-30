@@ -1,15 +1,21 @@
 package com.example.lynxdispatch;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -17,7 +23,10 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.Filter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,12 +50,13 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
     private boolean doubleBackToExitPressedOnce = false;
     private TextView username, car_model, car_no;
     private ImageView userprofile;
-    private SharedPreferences sharedpreferences;
-    private SharedPreferences.Editor editor;
+    private SharedPreferences sharedpreferences, sharedPreferences2;
+    private SharedPreferences.Editor editor, editor2;
     private GoogleMap mapAPI;
     private SupportMapFragment mapFragment;
     private FloatingActionButton currentLocation, assistantButton, filterButton, phoneButton, calculatorButton;
     private GpsTracker gpsTracker;
+    private int expire_bool, markReady_bool, approaching_bool, offline_bool;
 
 
     @Override
@@ -95,7 +105,154 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DispatchHomeActivity.this, "Filter Clicked...", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(DispatchHomeActivity.this);
+                builder.setTitle("Filter Map Items");
+
+                final TextView t1 = new TextView(DispatchHomeActivity.this);
+                final TextView t2 = new TextView(DispatchHomeActivity.this);
+                final TextView t3 = new TextView(DispatchHomeActivity.this);
+                final TextView t4 = new TextView(DispatchHomeActivity.this);
+                final TextView t5 = new TextView(DispatchHomeActivity.this);
+                final TextView t6 = new TextView(DispatchHomeActivity.this);
+
+                t1.setText("Trips");
+                t1.setTextSize(17f);
+                t1.setTypeface(t1.getTypeface(), Typeface.BOLD);
+                t2.setText("Expired");
+                t3.setText("Marked Ready");
+                t4.setText("Approaching");
+                t5.setText("Drivers");
+                t5.setTextSize(17f);
+                t5.setTypeface(t5.getTypeface(), Typeface.BOLD);
+                t6.setText("Offline");
+
+                final CheckBox c1 = new CheckBox(DispatchHomeActivity.this);
+                final CheckBox c2 = new CheckBox(DispatchHomeActivity.this);
+                final CheckBox c3 = new CheckBox(DispatchHomeActivity.this);
+                final CheckBox c4 = new CheckBox(DispatchHomeActivity.this);
+
+                expire_bool = sharedPreferences2.getInt("expire", 0);
+                markReady_bool = sharedPreferences2.getInt("mark_ready", 0);
+                approaching_bool = sharedPreferences2.getInt("approaching", 0);
+                offline_bool = sharedPreferences2.getInt("offline", 0);
+                if (expire_bool == 1) {
+                    c1.setChecked(true);
+                }
+                if (markReady_bool == 1) {
+                    c2.setChecked(true);
+                }
+
+                if (approaching_bool == 1) {
+                    c3.setChecked(true);
+                }
+
+                if (offline_bool == 1) {
+                    c4.setChecked(true);
+                }
+
+                
+
+                final LinearLayout linearLayout = new LinearLayout(DispatchHomeActivity.this);
+                final LinearLayout l1 = new LinearLayout(DispatchHomeActivity.this);
+                final LinearLayout l2 = new LinearLayout(DispatchHomeActivity.this);
+                final LinearLayout l3 = new LinearLayout(DispatchHomeActivity.this);
+                final LinearLayout l4 = new LinearLayout(DispatchHomeActivity.this);
+                final LinearLayout l5 = new LinearLayout(DispatchHomeActivity.this);
+                final LinearLayout l6 = new LinearLayout(DispatchHomeActivity.this);
+
+                linearLayout.setOrientation(LinearLayout.VERTICAL);
+                l1.setOrientation(LinearLayout.HORIZONTAL);
+                l2.setOrientation(LinearLayout.HORIZONTAL);
+                l3.setOrientation(LinearLayout.HORIZONTAL);
+                l4.setOrientation(LinearLayout.HORIZONTAL);
+                l5.setOrientation(LinearLayout.HORIZONTAL);
+                l6.setOrientation(LinearLayout.HORIZONTAL);
+
+                linearLayout.addView(l1);
+                linearLayout.addView(l2);
+                linearLayout.addView(l3);
+                linearLayout.addView(l4);
+                linearLayout.addView(l5);
+                linearLayout.addView(l6);
+
+                l1.addView(t1);
+                l1.setGravity(Gravity.LEFT);
+                l1.setBackgroundColor(Color.GRAY);
+                l1.setPadding(30, 30, 30, 30);
+
+                l2.addView(t2);
+                t2.setGravity(Gravity.LEFT);
+                l2.addView(c1);
+                c1.setGravity(Gravity.RIGHT);
+                t2.setMinWidth(750);
+                l2.setPadding(30, 30, 30, 30);
+
+                l3.addView(t3);
+                t3.setMinWidth(750);
+                l3.addView(c2);
+                l3.setPadding(30, 30, 30, 30);
+
+                l4.addView(t4);
+                t4.setMinWidth(750);
+                l4.addView(c3);
+                l4.setPadding(30, 30, 30, 30);
+
+                l5.addView(t5);
+                l5.setGravity(Gravity.LEFT);
+                l5.setBackgroundColor(Color.GRAY);
+                l5.setPadding(30, 30, 30, 30);
+
+                l6.addView(t6);
+                t6.setMinWidth(750);
+                l6.addView(c4);
+                l6.setPadding(30, 30, 30, 30);
+
+
+                builder.setView(linearLayout);
+                builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        if (c1.isChecked()) {
+                            expire_bool = 1;
+                        } else {
+                            expire_bool = 0;
+                        }
+                        if (c2.isChecked()) {
+                            markReady_bool = 1;
+                        } else {
+                            markReady_bool = 0;
+                        }
+                        if (c3.isChecked()) {
+                            approaching_bool = 1;
+                        } else {
+                            approaching_bool = 0;
+                        }
+                        if (c4.isChecked()) {
+                            offline_bool = 1;
+                        } else {
+                            offline_bool = 0;
+                        }
+
+                        editor2.putInt("expire", expire_bool);
+                        editor2.putInt("mark_ready", markReady_bool);
+                        editor2.putInt("approaching", approaching_bool);
+                        editor2.putInt("offline", offline_bool);
+                        editor2.apply();
+
+                        Toast.makeText(DispatchHomeActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                builder.show();
+
+
             }
         }); //on map screen right side button...
 
@@ -141,6 +298,8 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
 
         sharedpreferences = getSharedPreferences("login_data", MODE_PRIVATE);
         editor = sharedpreferences.edit();
+        sharedPreferences2 = getSharedPreferences("filter_data", MODE_PRIVATE);
+        editor2 = sharedPreferences2.edit();
         String fullname = sharedpreferences.getString("FullName", "");
         RequestOptions transcodeTypeRequestBuilder = new RequestOptions().error(R.mipmap.dispatch2);
         String imageUrl = sharedpreferences.getString("UserProfile", "");
