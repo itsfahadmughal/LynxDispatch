@@ -18,15 +18,18 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -151,7 +154,6 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
                 }
 
 
-
                 final LinearLayout linearLayout = new LinearLayout(DispatchHomeActivity.this);
                 final LinearLayout l1 = new LinearLayout(DispatchHomeActivity.this);
                 final LinearLayout l2 = new LinearLayout(DispatchHomeActivity.this);
@@ -162,7 +164,6 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
 
                 linearLayout.setOrientation(LinearLayout.VERTICAL);
                 l1.setOrientation(LinearLayout.HORIZONTAL);
-                l2.setOrientation(LinearLayout.HORIZONTAL);
                 l3.setOrientation(LinearLayout.HORIZONTAL);
                 l4.setOrientation(LinearLayout.HORIZONTAL);
                 l5.setOrientation(LinearLayout.HORIZONTAL);
@@ -175,25 +176,30 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
                 linearLayout.addView(l5);
                 linearLayout.addView(l6);
 
+                DisplayMetrics displayMetrics = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+                int height = displayMetrics.heightPixels;
+                int width = displayMetrics.widthPixels;
+
+
                 l1.addView(t1);
-                l1.setGravity(Gravity.LEFT);
+                l1.setGravity(Gravity.START);
                 l1.setBackgroundColor(Color.GRAY);
                 l1.setPadding(30, 30, 30, 30);
 
                 l2.addView(t2);
-                t2.setGravity(Gravity.LEFT);
                 l2.addView(c1);
-                c1.setGravity(Gravity.RIGHT);
-                t2.setMinWidth(750);
+                t2.setMinWidth((int) (width/1.5));              
                 l2.setPadding(30, 30, 30, 30);
 
+
                 l3.addView(t3);
-                t3.setMinWidth(750);
+                t3.setMinWidth((int) (width/1.5));
                 l3.addView(c2);
                 l3.setPadding(30, 30, 30, 30);
 
                 l4.addView(t4);
-                t4.setMinWidth(750);
+                t4.setMinWidth((int) (width/1.5));
                 l4.addView(c3);
                 l4.setPadding(30, 30, 30, 30);
 
@@ -203,7 +209,7 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
                 l5.setPadding(30, 30, 30, 30);
 
                 l6.addView(t6);
-                t6.setMinWidth(750);
+                t6.setMinWidth((int) (width/1.5));
                 l6.addView(c4);
                 l6.setPadding(30, 30, 30, 30);
 

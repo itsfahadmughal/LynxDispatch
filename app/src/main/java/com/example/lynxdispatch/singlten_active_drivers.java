@@ -1,6 +1,8 @@
 package com.example.lynxdispatch;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,7 +18,11 @@ import android.widget.Toast;
 import java.util.List;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.Manifest.permission.CALL_PHONE;
+import static android.Manifest.permission.SEND_SMS;
 
 public class singlten_active_drivers extends BaseAdapter {
 
@@ -71,27 +77,43 @@ public class singlten_active_drivers extends BaseAdapter {
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "call clicked", Toast.LENGTH_SHORT).show();
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse(String.valueOf(565464)));//change the number
-                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
+
+
+                if ((ContextCompat.checkSelfPermission(context, CALL_PHONE) !=
+                        PackageManager.PERMISSION_GRANTED)) {
+                    if ((ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, CALL_PHONE))) {
+
+                    } else {
+                        ActivityCompat.requestPermissions((Activity) context, new String[]{CALL_PHONE}, 1);
+                    }
+                } else {
+                    Uri sms_uri = Uri.parse("tel:923028863134");
+                    Intent sms_intent = new Intent(Intent.ACTION_DIAL, sms_uri);
+                    context.startActivity(sms_intent);
                 }
-                context.startActivity(callIntent);
+
+
             }
         });
 
         msg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "msg clicked", Toast.LENGTH_SHORT).show();
+
+                if ((ContextCompat.checkSelfPermission(context, SEND_SMS) !=
+                        PackageManager.PERMISSION_GRANTED)) {
+                    if ((ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, SEND_SMS))) {
+
+                    } else {
+                        ActivityCompat.requestPermissions((Activity) context, new String[]{SEND_SMS}, 1);
+                    }
+                } else {
+                    Uri sms_uri = Uri.parse("smsto:+923028863134");
+                    Intent sms_intent = new Intent(Intent.ACTION_SENDTO, sms_uri);
+                    sms_intent.putExtra("sms_body", "Lynx Dispatch : ");
+                    context.startActivity(sms_intent);
+                }
+
             }
         });
 
