@@ -65,7 +65,7 @@ public class DashboardDispatcherActivity extends AppCompatActivity {
         tripsinProgress_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DashboardDispatcherActivity.this, "Trips inProgress", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DashboardDispatcherActivity.this, "Trips inProgress Clicked", Toast.LENGTH_SHORT).show();
             }
         });
         markedReady_b.setOnClickListener(new View.OnClickListener() {
