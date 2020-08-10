@@ -17,6 +17,11 @@ allprojects {
     repositories {
         google()
         jcenter()
+        //For Calander
+        maven { url 'https://jitpack.io'
+
+
+        }
     }
 }
 

@@ -27,7 +27,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".NewTripEstimate"></activity>
+        <activity android:name=".UrgentTripDetail"></activity>
+        <activity android:name=".FareParameters" />
+        <activity android:name=".NewTripEstimate" />
         <activity android:name=".createNewTripDispatcherActivity" />
         <activity android:name=".DashboardDispatcherActivity" />
         <activity android:name=".CalculateTripActivity" />
