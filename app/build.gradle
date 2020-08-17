@@ -44,10 +44,13 @@ dependencies {
     //For Min Plus Button
     compile 'me.himanshusoni.quantityview:quantity-view:1.2.0'
 
+<<<<<<< HEAD
     implementation 'com.github.Kunzisoft:Android-SwitchDateTimePicker:2.0'
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
     implementation 'com.google.android.gms:play-services-places:16.1.0'
 
+=======
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
 
 }
 

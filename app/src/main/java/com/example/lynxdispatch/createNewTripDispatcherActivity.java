@@ -1,5 +1,6 @@
 package com.example.lynxdispatch;
 
+<<<<<<< HEAD
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,10 +44,19 @@ public class createNewTripDispatcherActivity extends AppCompatActivity {
     private SwitchDateTimeDialogFragment dateTimeDialogFragment, dateTimeDialogFragment1;
 
 
+=======
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class createNewTripDispatcherActivity extends AppCompatActivity {
+
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_trip_dispatcher);
+<<<<<<< HEAD
         inialization();
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -272,5 +282,11 @@ public class createNewTripDispatcherActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+=======
+
+
+
+
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
     }
 }

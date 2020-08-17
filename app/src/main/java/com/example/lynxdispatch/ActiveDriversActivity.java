@@ -97,5 +97,9 @@ public class ActiveDriversActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+<<<<<<< HEAD
+=======
+
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
     }
 }

@@ -3,6 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.lynxdispatch">
 
+<<<<<<< HEAD
+=======
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
     <application
         android:allowBackup="true"
         android:icon="@mipmap/dispatch2"
@@ -12,9 +30,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+<<<<<<< HEAD
         <activity android:name=".addNewVehicleActivity"></activity>
         <activity android:name=".FleetActivity" />
         <activity android:name=".UrgentTripDetail" />
+=======
+        <activity android:name=".UrgentTripDetail"></activity>
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
         <activity android:name=".FareParameters" />
         <activity android:name=".NewTripEstimate" />
         <activity android:name=".createNewTripDispatcherActivity" />
@@ -55,6 +77,7 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -84,5 +107,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+=======
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
 
 </manifest>

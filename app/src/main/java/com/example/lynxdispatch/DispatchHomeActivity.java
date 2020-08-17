@@ -39,7 +39,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+<<<<<<< HEAD
 import com.google.android.gms.maps.model.CircleOptions;
+=======
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -77,11 +80,18 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
                 if (gpsTracker.canGetLocation()) {
                     double latitude = gpsTracker.getLatitude();
                     double longitude = gpsTracker.getLongitude();
+<<<<<<< HEAD
                     LatLng addr = new LatLng(latitude, longitude);
                     mapAPI.clear();
                     mapAPI.addMarker(new MarkerOptions().position(addr).title("Current Location"));
                     mapAPI.moveCamera(CameraUpdateFactory.newLatLng(addr));
                     mapAPI.setMinZoomPreference(15.0f);
+=======
+                    LatLng Skt = new LatLng(latitude, longitude);
+                    mapAPI.addMarker(new MarkerOptions().position(Skt).title("Skt"));
+                    mapAPI.moveCamera(CameraUpdateFactory.newLatLng(Skt));
+                    mapAPI.setMinZoomPreference(6.0f);
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
                 } else {
                     gpsTracker.showSettingsAlert();
                 }
@@ -191,17 +201,29 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
 
                 l2.addView(t2);
                 l2.addView(c1);
+<<<<<<< HEAD
                 t2.setMinWidth((int) (width / 1.5));
+=======
+                t2.setMinWidth((int) (width/1.5));              
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
                 l2.setPadding(30, 30, 30, 30);
 
 
                 l3.addView(t3);
+<<<<<<< HEAD
                 t3.setMinWidth((int) (width / 1.5));
+=======
+                t3.setMinWidth((int) (width/1.5));
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
                 l3.addView(c2);
                 l3.setPadding(30, 30, 30, 30);
 
                 l4.addView(t4);
+<<<<<<< HEAD
                 t4.setMinWidth((int) (width / 1.5));
+=======
+                t4.setMinWidth((int) (width/1.5));
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
                 l4.addView(c3);
                 l4.setPadding(30, 30, 30, 30);
 
@@ -211,7 +233,11 @@ public class DispatchHomeActivity extends FragmentActivity implements OnMapReady
                 l5.setPadding(30, 30, 30, 30);
 
                 l6.addView(t6);
+<<<<<<< HEAD
                 t6.setMinWidth((int) (width / 1.5));
+=======
+                t6.setMinWidth((int) (width/1.5));
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
                 l6.addView(c4);
                 l6.setPadding(30, 30, 30, 30);
 

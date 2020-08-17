@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".createNewTripDispatcherActivity">
 
+<<<<<<< HEAD
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -277,3 +282,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+=======
+</androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2

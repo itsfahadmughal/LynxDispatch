@@ -83,9 +83,13 @@ public class DashboardDispatcherActivity extends AppCompatActivity {
         fleet_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 intent = new Intent(DashboardDispatcherActivity.this, FleetActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+=======
+                Toast.makeText(DashboardDispatcherActivity.this, "Fleet", Toast.LENGTH_SHORT).show();
+>>>>>>> ef27f1e934c5aebf63d907576ef60af6b1f092a2
             }
         });
         approachingTrips_b.setOnClickListener(new View.OnClickListener() {
